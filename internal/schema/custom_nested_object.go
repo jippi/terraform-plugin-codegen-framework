@@ -61,7 +61,6 @@ func (c CustomNestedObjectType) Render() ([]byte, error) {
 
 	for _, f := range renderFuncs {
 		b, err := f()
-
 		if err != nil {
 			return nil, err
 		}
@@ -78,7 +77,6 @@ func (c CustomNestedObjectType) renderEqual() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["equal"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +86,6 @@ func (c CustomNestedObjectType) renderEqual() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +97,6 @@ func (c CustomNestedObjectType) renderString() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["string"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +106,6 @@ func (c CustomNestedObjectType) renderString() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +117,6 @@ func (c CustomNestedObjectType) renderTypable() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["typable"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -132,7 +126,6 @@ func (c CustomNestedObjectType) renderTypable() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +137,6 @@ func (c CustomNestedObjectType) renderType() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["type"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +146,6 @@ func (c CustomNestedObjectType) renderType() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +157,6 @@ func (c CustomNestedObjectType) renderValue() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["value"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -178,7 +168,6 @@ func (c CustomNestedObjectType) renderValue() ([]byte, error) {
 		Name:       c.Name.ToPascalCase(),
 		AttrValues: c.AttrValues,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -190,7 +179,6 @@ func (c CustomNestedObjectType) renderValueFromObject() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueFromObject"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -202,7 +190,6 @@ func (c CustomNestedObjectType) renderValueFromObject() ([]byte, error) {
 		Name:       c.Name.ToPascalCase(),
 		AttrValues: c.AttrValues,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +201,6 @@ func (c CustomNestedObjectType) renderValueFromTerraform() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueFromTerraform"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -224,7 +210,6 @@ func (c CustomNestedObjectType) renderValueFromTerraform() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -236,7 +221,6 @@ func (c CustomNestedObjectType) renderValueMust() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueMust"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -246,7 +230,6 @@ func (c CustomNestedObjectType) renderValueMust() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +241,6 @@ func (c CustomNestedObjectType) renderValueNull() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueNull"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -268,7 +250,6 @@ func (c CustomNestedObjectType) renderValueNull() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -280,7 +261,6 @@ func (c CustomNestedObjectType) renderValueType() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueType"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -290,7 +270,6 @@ func (c CustomNestedObjectType) renderValueType() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -302,7 +281,6 @@ func (c CustomNestedObjectType) renderValueUnknown() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valueUnknown"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -312,7 +290,6 @@ func (c CustomNestedObjectType) renderValueUnknown() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -395,7 +372,6 @@ func (c CustomNestedObjectValue) Render() ([]byte, error) {
 
 	for _, f := range renderFuncs {
 		b, err := f()
-
 		if err != nil {
 			return nil, err
 		}
@@ -412,7 +388,6 @@ func (c CustomNestedObjectValue) renderAttributeTypes() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["attributeTypes"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -424,7 +399,6 @@ func (c CustomNestedObjectValue) renderAttributeTypes() ([]byte, error) {
 		Name:      c.Name.ToPascalCase(),
 		AttrTypes: c.AttrTypes,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -436,7 +410,6 @@ func (c CustomNestedObjectValue) renderEqual() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["equal"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -448,7 +421,6 @@ func (c CustomNestedObjectValue) renderEqual() ([]byte, error) {
 		Name:       c.Name.ToPascalCase(),
 		AttrValues: c.AttrValues,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -460,7 +432,6 @@ func (c CustomNestedObjectValue) renderIsNull() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["isNull"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -470,7 +441,6 @@ func (c CustomNestedObjectValue) renderIsNull() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -482,7 +452,6 @@ func (c CustomNestedObjectValue) renderIsUnknown() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["isUnknown"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -492,7 +461,6 @@ func (c CustomNestedObjectValue) renderIsUnknown() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -504,7 +472,6 @@ func (c CustomNestedObjectValue) renderString() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["string"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -514,7 +481,6 @@ func (c CustomNestedObjectValue) renderString() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -526,7 +492,6 @@ func (c CustomNestedObjectValue) renderToObjectValue() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["toObjectValue"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -542,7 +507,6 @@ func (c CustomNestedObjectValue) renderToObjectValue() ([]byte, error) {
 		AttrTypes:       c.AttrTypes,
 		CollectionTypes: c.CollectionTypes,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -554,7 +518,6 @@ func (c CustomNestedObjectValue) renderToTerraformValue() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["toTerraformValue"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -566,7 +529,6 @@ func (c CustomNestedObjectValue) renderToTerraformValue() ([]byte, error) {
 		Name:      c.Name.ToPascalCase(),
 		AttrTypes: c.AttrTypes,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -578,7 +540,6 @@ func (c CustomNestedObjectValue) renderType() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["type"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -588,7 +549,6 @@ func (c CustomNestedObjectValue) renderType() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -600,7 +560,6 @@ func (c CustomNestedObjectValue) renderValuable() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["valuable"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -610,7 +569,6 @@ func (c CustomNestedObjectValue) renderValuable() ([]byte, error) {
 	}{
 		Name: c.Name.ToPascalCase(),
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -622,7 +580,6 @@ func (c CustomNestedObjectValue) renderValue() ([]byte, error) {
 	var buf bytes.Buffer
 
 	t, err := template.New("").Parse(c.templates["value"])
-
 	if err != nil {
 		return nil, err
 	}
@@ -634,7 +591,6 @@ func (c CustomNestedObjectValue) renderValue() ([]byte, error) {
 		Name:       c.Name.ToPascalCase(),
 		AttrValues: c.AttrValues,
 	})
-
 	if err != nil {
 		return nil, err
 	}

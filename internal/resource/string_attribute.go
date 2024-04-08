@@ -24,6 +24,8 @@ type GeneratorStringAttribute struct {
 	PlanModifiers            convert.PlanModifiers
 	Sensitive                convert.Sensitive
 	Validators               convert.Validators
+
+	seen map[string]bool
 }
 
 func NewGeneratorStringAttribute(name string, a *resource.StringAttribute) (GeneratorStringAttribute, error) {
@@ -163,6 +165,12 @@ func (g GeneratorStringAttribute) CustomTypeAndValue(name string) ([]byte, error
 	if g.AssociatedExternalType == nil {
 		return nil, nil
 	}
+
+	if g.seen[name] {
+		fmt.Println("CustomTypeAndValue skipping", name)
+	}
+
+	g.seen[name] = true
 
 	var buf bytes.Buffer
 

@@ -106,28 +106,33 @@ func (cmd *GenerateAllCommand) runInternal(ctx context.Context, logger *slog.Log
 		return fmt.Errorf("error reading IR JSON: %w", err)
 	}
 
+	fmt.Println("validate json")
 	// validate JSON
 	err = validate.JSON(src)
 	if err != nil {
 		return fmt.Errorf("error validating IR JSON: %w", err)
 	}
 
+	fmt.Println("parse spec")
 	// parse and validate IR against specification
 	spec, err := spec.Parse(ctx, src)
 	if err != nil {
 		return fmt.Errorf("error parsing IR JSON: %w", err)
 	}
 
+	fmt.Println("generate datasource")
 	err = generateDataSourceCode(ctx, spec, cmd.flagOutputPath, cmd.flagPackageName, "DataSource", logger)
 	if err != nil {
 		return fmt.Errorf("error generating data source code: %w", err)
 	}
 
+	fmt.Println("generate resource")
 	err = generateResourceCode(ctx, spec, cmd.flagOutputPath, cmd.flagPackageName, "Resource", logger)
 	if err != nil {
 		return fmt.Errorf("error generating resource code: %w", err)
 	}
 
+	fmt.Println("generate provider")
 	err = generateProviderCode(ctx, spec, cmd.flagOutputPath, cmd.flagPackageName, "Provider", logger)
 	if err != nil {
 		return fmt.Errorf("error generating provider code: %w", err)

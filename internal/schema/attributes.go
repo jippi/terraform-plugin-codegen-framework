@@ -65,7 +65,6 @@ func (g GeneratorAttributes) AttrTypes() (map[string]string, error) {
 
 		if a, ok := g[k].(AttrType); ok {
 			attrType, err := a.AttrType(name)
-
 			if err != nil {
 				return nil, err
 			}
@@ -134,7 +133,6 @@ func (g GeneratorAttributes) CollectionTypes() (map[string]map[string]string, er
 		}
 
 		collectionType, err := c.CollectionType()
-
 		if err != nil {
 			return nil, err
 		}
@@ -211,7 +209,7 @@ func (g GeneratorAttributes) Schema() (string, error) {
 	var s strings.Builder
 
 	// Using sorted keys to guarantee attribute order as maps are unordered in Go.
-	var keys = make([]string, 0, len(g))
+	keys := make([]string, 0, len(g))
 
 	for k := range g {
 		keys = append(keys, k)
@@ -225,7 +223,6 @@ func (g GeneratorAttributes) Schema() (string, error) {
 		}
 
 		str, err := g[k].Schema(FrameworkIdentifier(k))
-
 		if err != nil {
 			return "", err
 		}
@@ -270,7 +267,7 @@ func (g GeneratorAttributes) ToFuncs() (map[string]ToFromConversion, error) {
 }
 
 func (g GeneratorAttributes) SortedKeys() []string {
-	var attributeKeys = make([]string, 0, len(g))
+	attributeKeys := make([]string, 0, len(g))
 
 	for k := range g {
 		attributeKeys = append(attributeKeys, k)

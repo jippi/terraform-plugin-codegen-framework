@@ -46,9 +46,9 @@ func GetElementType(e specschema.ElementType) string {
 		return "types.NumberType"
 	case e.Object != nil:
 		if e.Object.CustomType != nil {
-			return fmt.Sprintf("%s{\nAttrTypes: map[string]attr.Type{\n%s\n},\n}", e.Object.CustomType.Type, GetAttrTypes(e.Object.AttributeTypes))
+			return fmt.Sprintf("%s{\nAttrTypes: map[string]attr.Type{\n%s,\n},\n},", e.Object.CustomType.Type, GetAttrTypes(e.Object.AttributeTypes))
 		}
-		return fmt.Sprintf("types.ObjectType{\nAttrTypes: map[string]attr.Type{\n%s\n},\n}", GetAttrTypes(e.Object.AttributeTypes))
+		return fmt.Sprintf("types.ObjectType{\nAttrTypes: map[string]attr.Type{\n%s,\n},\n},", GetAttrTypes(e.Object.AttributeTypes))
 	case e.Set != nil:
 		if e.Set.CustomType != nil {
 			return fmt.Sprintf("%s{\nElemType: %s,\n}", e.Set.CustomType.Type, GetElementType(e.Set.ElementType))

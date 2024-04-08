@@ -64,7 +64,17 @@ func (c CustomTypePrimitive) Imports() *schema.Imports {
 	return imports
 }
 
+var seenCustomType = make(map[string]bool)
+
 func (c CustomTypePrimitive) Schema() []byte {
+	if seenCustomType[c.name] {
+		fmt.Println("skip custom type schema generation for", c.name, "as it has already been seen")
+
+		return nil
+	}
+
+	seenCustomType[c.name] = true
+
 	var customType string
 
 	switch {
@@ -82,6 +92,14 @@ func (c CustomTypePrimitive) Schema() []byte {
 }
 
 func (c CustomTypePrimitive) ValueType() string {
+	if seenCustomType[c.name] {
+		fmt.Println("skip custom type value type generation for", c.name, "as it has already been seen")
+
+		return ""
+	}
+
+	seenCustomType[c.name] = true
+
 	switch {
 	case c.customType != nil:
 		return c.customType.ValueType

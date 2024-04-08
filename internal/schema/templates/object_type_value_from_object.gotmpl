@@ -1,4 +1,5 @@
 
+// func (t {{.Name}}Type) ValueFromObject(ctx context.Context, in basetypes.ObjectValue) ({{.Name}}Value, diag.Diagnostics) {
 func (t {{.Name}}Type) ValueFromObject(ctx context.Context, in basetypes.ObjectValue) (basetypes.ObjectValuable, diag.Diagnostics) {
 return {{.Name}}Value{
 ObjectValue: in,

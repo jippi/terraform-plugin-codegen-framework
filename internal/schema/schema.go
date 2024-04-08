@@ -122,19 +122,16 @@ func (g GeneratorSchema) Imports() (string, error) {
 
 func (g GeneratorSchema) Schema(name, packageName, generatorType string) ([]byte, error) {
 	attributes, err := g.Attributes.Schema()
-
 	if err != nil {
 		return nil, err
 	}
 
 	blocks, err := g.Blocks.Schema()
-
 	if err != nil {
 		return nil, err
 	}
 
 	imports, err := g.Imports()
-
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +153,6 @@ func (g GeneratorSchema) Schema(name, packageName, generatorType string) ([]byte
 	}
 
 	t, err := template.New("schema").Parse(SchemaGoTemplate)
-
 	if err != nil {
 		return nil, err
 	}
@@ -184,7 +180,6 @@ func (g GeneratorSchema) Models(name string) ([]model.Model, error) {
 		}
 
 		modelField, err := g.Attributes[k].ModelField(FrameworkIdentifier(k))
-
 		if err != nil {
 			return nil, err
 		}
@@ -200,7 +195,6 @@ func (g GeneratorSchema) Models(name string) ([]model.Model, error) {
 		}
 
 		modelField, err := g.Blocks[k].ModelField(FrameworkIdentifier(k))
-
 		if err != nil {
 			return nil, err
 		}
@@ -232,7 +226,6 @@ func (g GeneratorSchema) CustomTypeValueBytes() ([]byte, error) {
 
 		if c, ok := g.Attributes[k].(CustomTypeAndValue); ok {
 			b, err := c.CustomTypeAndValue(k)
-
 			if err != nil {
 				return nil, err
 			}
@@ -250,7 +243,6 @@ func (g GeneratorSchema) CustomTypeValueBytes() ([]byte, error) {
 
 		if c, ok := g.Blocks[k].(CustomTypeAndValue); ok {
 			b, err := c.CustomTypeAndValue(k)
-
 			if err != nil {
 				return nil, err
 			}
@@ -423,7 +415,7 @@ func AttrTypesString(attrTypes specschema.ObjectAttributeTypes) (string, error) 
 			if err != nil {
 				return "", err
 			}
-			attrTypesStr = append(attrTypesStr, fmt.Sprintf("%q: types.ObjectType{\nAttrTypes: map[string]attr.Type{\n%s,\n}\n}", v.Name, objAttrTypesStr))
+			attrTypesStr = append(attrTypesStr, fmt.Sprintf("%q: types.ObjectType{\nAttrTypes: map[string]attr.Type{\n%s,\n},\n}", v.Name, objAttrTypesStr))
 		case v.Set != nil:
 			elemType, err := ElementTypeString(v.Set.ElementType)
 			if err != nil {

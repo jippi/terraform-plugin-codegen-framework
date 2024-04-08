@@ -4,6 +4,7 @@
 package format
 
 import (
+	"fmt"
 	"go/format"
 	"regexp"
 	"strings"
@@ -15,7 +16,9 @@ func Format(schemas map[string][]byte) (map[string][]byte, error) {
 	for k, v := range schemas {
 		formattedSchema, err := format.Source(v)
 		if err != nil {
-			return nil, err
+			formattedSchemas[k] = v
+			fmt.Println("Error formatting", k, err)
+			continue
 		}
 
 		formattedSchemas[k] = formattedSchema

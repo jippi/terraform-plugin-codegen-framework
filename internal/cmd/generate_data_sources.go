@@ -7,7 +7,6 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"log"
 	"log/slog"
 	"os"
 	"strings"
@@ -151,19 +150,19 @@ func generateDataSourceCode(ctx context.Context, spec spec.Specification, output
 	// generate model code
 	models, err := g.Models()
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error generating model code: %w", err)
 	}
 
 	// generate custom type and value types code
 	customTypeValue, err := g.CustomTypeValue()
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error generating custom code: %w", err)
 	}
 
 	// generate "expand" and "flatten" code
 	toFromFunctions, err := g.ToFromFunctions(ctxWithPath, logger)
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error generating expand/flatten code: %w", err)
 	}
 
 	// format schema code
@@ -175,19 +174,19 @@ func generateDataSourceCode(ctx context.Context, spec spec.Specification, output
 	// format model code
 	formattedModels, err := format.Format(models)
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error formatting model code: %w", err)
 	}
 
 	// format custom type and value types code
 	formattedCustomTypeValue, err := format.Format(customTypeValue)
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error formatting custom type/value code: %w", err)
 	}
 
 	// format "expand" and "flatten" code
 	formattedToFromFunctions, err := format.Format(toFromFunctions)
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("error formatting expand/flatten code: %w", err)
 	}
 
 	// write code

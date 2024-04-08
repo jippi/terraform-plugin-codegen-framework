@@ -35,7 +35,6 @@ func (g GeneratorSchemas) Schemas(packageName, generatorType string) (map[string
 		}
 
 		b, err := s.Schema(k, pkgName, generatorType)
-
 		if err != nil {
 			return nil, err
 		}
